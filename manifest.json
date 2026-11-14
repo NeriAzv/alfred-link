@@ -1,0 +1,15 @@
+{
+  "name": "Alfred",
+  "short_name": "Alfred",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#111312",
+  "theme_color": "#1f6f5f",
+  "icons": [
+    {
+      "src": "icone.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    }
+  ]
+}
