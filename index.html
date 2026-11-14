@@ -10,14 +10,20 @@
 <meta name="theme-color" content="#1f6f5f">
 <style>html,body{height:100%;margin:0;background:#111312;color:#eceae3;font:16px system-ui,-apple-system,sans-serif;display:grid;place-items:center;text-align:center}a{color:#4fb89d}p{margin:0;padding:0 24px;line-height:1.5}</style>
 </head><body>
-<p id="aviso">Abrindo o Alfred… <a id="link" href="https://architectural-flower-rays-arranged.trycloudflare.com">toque aqui se não abrir</a></p>
+<p id="aviso">Abrindo o Alfred… <a id="link" href="https://alfred.tail00c850.ts.net">toque aqui se não abrir</a></p>
 <script>
 (async () => {
-  var destino = "https://architectural-flower-rays-arranged.trycloudflare.com";
+  var destino = "https://alfred.tail00c850.ts.net";
   try {
-    var r = await fetch("endereco.json?v=" + Date.now(), { cache: "no-store" });
-    if (r.ok) { var d = await r.json(); if (d && d.endereco) destino = d.endereco; }
-  } catch (e) {}
+    // O fixo e o caminho. Se ele nao responder (maquina fora do Tailscale), cai no tunel do dia,
+    // que a casa reescreve aqui a cada subida.
+    var t = await fetch(destino + "/estilo.css", { method: "GET", mode: "no-cors", cache: "no-store" });
+  } catch (e) {
+    try {
+      var r = await fetch("endereco.json?v=" + Date.now(), { cache: "no-store" });
+      if (r.ok) { var d = await r.json(); if (d && d.endereco) destino = d.endereco; }
+    } catch (e2) {}
+  }
   document.getElementById("link").href = destino;
   location.replace(destino);
 })();
